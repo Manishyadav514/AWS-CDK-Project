@@ -2,6 +2,7 @@ import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as apigw from "aws-cdk-lib/aws-apigateway";
+import { HitCounter } from './hitcounter';
 // import { aws_s3 as s3 } from "aws-cdk-lib";
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 
@@ -31,8 +32,17 @@ export class AwsCdkProjectStack extends cdk.Stack {
     });
 
     // defines an API Gateway REST API resource backed by our "hello" function.
-    new apigw.LambdaRestApi(this, "Endpoint", {
-      handler: hello,
+    // new apigw.LambdaRestApi(this, "Endpoint", {
+    //   handler: hello,
+    // });
+    
+    const helloWithCounter = new HitCounter(this, 'HelloHitCounter', {
+      downstream: hello
+    });
+
+    // defines an API Gateway REST API resource backed by our "hello" function.
+    new apigw.LambdaRestApi(this, 'Endpoint', {
+      handler: helloWithCounter.handler
     });
     
   }
