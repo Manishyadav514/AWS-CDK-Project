@@ -12,3 +12,7 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 * `cdk deploy`      deploy this stack to your default AWS account/region
 * `cdk diff`        compare deployed stack with current state
 * `cdk synth`       emits the synthesized CloudFormation template
+
+
+Table Viewer URL: https://vlux4itfqc.execute-api.ap-south-1.amazonaws.com/prod/
+prod api gateway: https://zd5vsjpy3j.execute-api.ap-south-1.amazonaws.com/prod/get
